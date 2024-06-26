@@ -132,7 +132,7 @@ def parse(img: cv2.Mat, enable_debug=True):
             left_right = left_rights[col_index]
             row['cells'].append(
                 {
-                    'id': f'{row_index}:{col_index}',
+                    'id': f'{row_index}_{col_index}',
                     'rect': (
                         left_right[0],
                         top_bottom[0],
@@ -142,22 +142,23 @@ def parse(img: cv2.Mat, enable_debug=True):
                 }
             )
 
-            cv2.rectangle(
-                img,
-                (left_right[0], top_bottom[0]),
-                (left_right[1], top_bottom[1]),
-                (0, 0, 255),
-                1,
-            )
-            cv2.putText(
-                img,
-                f'({row_index}, {col_index})',
-                (left_right[0], top_bottom[0]),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (0, 0, 255),
-                1,
-            )
+            if enable_debug:
+                cv2.rectangle(
+                    img,
+                    (left_right[0], top_bottom[0]),
+                    (left_right[1], top_bottom[1]),
+                    (0, 0, 255),
+                    1,
+                )
+                cv2.putText(
+                    img,
+                    f'({row_index}, {col_index})',
+                    (left_right[0], top_bottom[0]),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.5,
+                    (0, 0, 255),
+                    1,
+                )
         result.append(row)
 
     write_output('grid', img, enable_debug)
