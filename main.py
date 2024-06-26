@@ -1,6 +1,6 @@
 import image_process
 import cv2
-
+import json
 import classify
 import comp_db
 
@@ -27,7 +27,9 @@ for row in result:
         comp_types = comp_db.query(feature_vector)
         cell['component_type'] = comp_types[0]['name']
 
-print(result)
+
+print(json.dumps(result, indent=4))
+
 for row in result:
     for cell in row['cells']:
         x, y, w, h = cell['rect']
