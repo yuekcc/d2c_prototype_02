@@ -49,4 +49,4 @@ for row in result:
             (0, 0, 255),
             1,
         )
-image_process.write_output(f'result', img, True)
+image_process.write_output('result', img, True)
