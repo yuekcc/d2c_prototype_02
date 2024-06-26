@@ -16,7 +16,7 @@ index = Index(
     expansion_search=64,  # Control the quality of search, optional
 )
 
-LABELS = ['button', 'input', 'select', 'x']
+LABELS = ['button', 'input', 'select', 'x', 'label']
 
 
 def init_db():
