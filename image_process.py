@@ -78,11 +78,11 @@ def make_projection_image(projection: list[int], image_height: int, image_width:
 
 def crop(img: cv2.Mat, rect: tuple[int, int, int, int]):
     x, y, w, h = rect
-    return img[y : (y + h), x:w]
+    return img[y : (y + h), x : (x + w)]
 
 
-def parse(img_path: str, enable_debug=True):
-    img = cv2.imread(img_path)
+def parse(img: cv2.Mat, enable_debug=True):
+    # img = cv2.imread(img_path)
     write_output('input', img, enable_debug)
 
     h, w, _ = img.shape
@@ -147,16 +147,16 @@ def parse(img_path: str, enable_debug=True):
                 (left_right[0], top_bottom[0]),
                 (left_right[1], top_bottom[1]),
                 (0, 0, 255),
-                2,
+                1,
             )
             cv2.putText(
                 img,
-                f'({row_index + 1}, {col_index + 1})',
+                f'({row_index}, {col_index})',
                 (left_right[0], top_bottom[0]),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.75,
+                0.5,
                 (0, 0, 255),
-                2,
+                1,
             )
         result.append(row)
 
